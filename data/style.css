@@ -1,0 +1,40 @@
+html {
+  font-family: Helvetica;
+  display: inline-block;
+  margin: 0px auto;
+  text-align: center;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+h1 {
+  color: #0F3376;
+  padding: 2vh;
+}
+
+.main {
+  display: flex;
+  min-height: 100%;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.button-wrapper {
+  display: flex;
+  flex-basis: calc(50%);
+  justify-content: center;
+  flex-direction: column
+}
+
+.button {
+  flex: 1;
+  height: 25%;
+  background: green;
+}
+
+p {
+  font-size: 1.5rem;
+}

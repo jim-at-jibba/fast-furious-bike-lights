@@ -1,0 +1,42 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script>
+    function clickHandler(color) {
+      const url = 'http://192.168.4.1/lights?color=' + color;
+      const Http = new XMLHttpRequest();
+      Http.open("GET", url);
+
+      Http.send();
+      Http.onreadystatechange = (e) => {
+        console.log("E", e);
+        console.log(Http.responseText)
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+  <h1>Bike Lights</h1>
+
+  <div class="main">
+
+    <div class="button-wrapper">
+      <button onclick={clickHandler("green")} class="button" style="background: green">Green</button>
+    </div>
+    <div class="button-wrapper">
+      <button onclick={clickHandler("blue")} class="button" style="background: blue">Blue</button>
+    </div>
+    <div class="button-wrapper">
+      <button onclick={clickHandler("purple")} class="button" style="background: purple">Purple</button>
+    </div>
+    <div class="button-wrapper">
+      <button onclick={clickHandler("red")} class="button" style="background: red">Red</button>
+    </div>
+  </div>
+</body>
+
+</html>
