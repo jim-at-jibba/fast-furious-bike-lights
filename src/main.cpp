@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <Adafruit_NeoPixel.h>
 #include "WiFi.h"
 #include "ESPAsyncWebServer.h"
 #include "SPIFFS.h"
@@ -11,6 +12,13 @@ const char *ssid = "FFBikes";
 const char *password = "password123";
 
 const char *PARAM_MESSAGE = "color";
+
+// LED Stuff
+#define PIN 6
+#define NUM_LEDS 60
+#define BRIGHTNESS 50
+
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRBW + NEO_KHZ800);
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
@@ -53,10 +61,24 @@ void listDir(fs::FS &fs, const char *dirname, uint8_t levels)
     file = root.openNextFile();
   }
 }
+
+void colorWipe(uint32_t c, uint8_t wait)
+{
+  for (uint16_t i = 0; i < strip.numPixels(); i++)
+  {
+    strip.setPixelColor(i, c);
+    strip.show();
+    delay(wait);
+  }
+}
+
 void setup()
 {
   // Serial port for debugging purposes
   Serial.begin(115200);
+  strip.setBrightness(BRIGHTNESS);
+  strip.begin();
+  strip.show(); // Initialize all pixels to 'off'
 
   // Initialize SPIFFS
   if (!SPIFFS.begin(true))
@@ -86,6 +108,20 @@ void setup()
     if (request->hasParam(PARAM_MESSAGE))
     {
       message = request->getParam(PARAM_MESSAGE)->value();
+      Serial.print("Color: ");
+      Serial.print(message);
+      if (message == "red")
+      {
+        colorWipe(strip.Color(255, 0, 0), 50);
+      }
+      else if (message == "green")
+      {
+        colorWipe(strip.Color(0, 255, 0), 50);
+      }
+      else if (message == "blue")
+      {
+        colorWipe(strip.Color(0, 0, 255), 50);
+      }
     }
     else
     {
