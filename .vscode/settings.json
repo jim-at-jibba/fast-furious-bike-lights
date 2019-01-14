@@ -1,0 +1,6 @@
+{
+  "terminal.integrated.env.osx": {
+    "PATH": "/Users/jamesbest/.platformio/penv/bin:/Users/jamesbest/.platformio/penv:/Users/jamesbest/.yarn/bin:/Users/jamesbest/.config/yarn/global/node_modules/.bin:/Users/jamesbest/.fastlane/bin:/Users/jamesbest/.composer/vendor/bin:/usr/local/mysql/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/Users/jamesbest/Library/Android/sdk/tools:/Users/jamesbest/Library/Android/sdk/platform-tools:/usr/local/opt/fzf/bin",
+    "PLATFORMIO_CALLER": "vscode"
+  }
+}
